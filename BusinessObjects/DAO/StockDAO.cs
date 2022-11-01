@@ -34,7 +34,7 @@ namespace BusinessObjects.DAO
             try
             {
                 var context = new PRN221_DBContext();
-                stocks = context.Stocks.ToList();
+                stocks = context.Stocks.Include(s => s.Shop).ToList();
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace BusinessObjects.DAO
             try
             {
                 var context = new PRN221_DBContext();
-                stock = context.Stocks.SingleOrDefault(x => x.Id == Id);
+                stock = context.Stocks.Include(s => s.Shop).SingleOrDefault(x => x.Id == Id);
             }
             catch (Exception ex)
             {

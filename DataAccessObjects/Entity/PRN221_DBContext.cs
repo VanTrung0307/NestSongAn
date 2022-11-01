@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -29,8 +31,11 @@ namespace DataAccessObjects.Entity
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=MonMon,1433;Initial Catalog=PRN221_DB;User ID=sa;Password=1234;Encrypt=True;TrustServerCertificate=true;");
+                optionsBuilder.UseSqlServer("Server=VANTRUNG;Database=PRN221_DB;Uid=sa;password=1234567890", builder =>
+                {
+                    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+                });
+                base.OnConfiguring(optionsBuilder);
             }
         }
 

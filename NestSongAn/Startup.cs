@@ -1,6 +1,8 @@
+using DataAccessObjects.Entity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +32,7 @@ namespace NestSongAn
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<IShopService, ShopService>();
             services.AddScoped<IAccountService, AccountService>();
-
+            services.AddDbContext<PRN221_DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
         }
 
