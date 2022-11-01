@@ -29,6 +29,8 @@ namespace NestSongAn
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<IShopService, ShopService>();
+            services.AddScoped<IAccountService, AccountService>();
+
 
         }
 
