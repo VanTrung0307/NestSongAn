@@ -28,6 +28,7 @@ namespace NestSongAn
             services.AddRazorPages();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IStockService, StockService>();
+            services.AddScoped<IShopService, ShopService>();
 
         }
 
