@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore;
+
+
 namespace BusinessObjects.DAO
 {
     public class CustomerDAO
@@ -26,7 +29,7 @@ namespace BusinessObjects.DAO
                 }
             }
         }
-        public IEnumerable<Customer> GetMembers()
+        public IEnumerable<Customer> GetCustomerList()
         {
             List<Customer> customer;
             try
@@ -38,6 +41,14 @@ namespace BusinessObjects.DAO
             {
                 throw new Exception(ex.Message);
             }
+            return customer;
+        }
+        public Customer LoginCustomer(string email, string password)
+        {
+            var context = new PRN221_DBContext();
+
+
+            Customer customer = context.Customers.Include(cus => cus.Account).Where(cus => cus.Account.Email.Equals(email.ToLower()) && cus.Account.Password.Equals(password.ToLower())).FirstOrDefault();
             return customer;
         }
         public Customer GetCustomerByID(int? customerId)
@@ -56,7 +67,7 @@ namespace BusinessObjects.DAO
             }
             return customer;
         }
-        public Customer GetMemberByEmail(String email)
+        public Customer GetCustomerByEmail(String email)
         {
             Customer customer;
             try
@@ -83,7 +94,7 @@ namespace BusinessObjects.DAO
                 }
                 else
                 {
-                    throw new Exception("The member is already exist.");
+                    throw new Exception("The customer is already exist.");
                 }
             }
             catch (Exception ex)
@@ -104,7 +115,7 @@ namespace BusinessObjects.DAO
                 }
                 else
                 {
-                    throw new Exception("The member does not already exist.");
+                    throw new Exception("The customer does not already exist.");
                 }
             }
             catch (Exception ex)
@@ -125,7 +136,7 @@ namespace BusinessObjects.DAO
                 }
                 else
                 {
-                    throw new Exception("The member does not already exist.");
+                    throw new Exception("The customer does not already exist.");
                 }
             }
             catch (Exception ex)

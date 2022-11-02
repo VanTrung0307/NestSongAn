@@ -31,7 +31,7 @@ namespace DataAccessObjects.Entity
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=VANTRUNG;Database=PRN221_DB;Uid=sa;password=1234567890", builder =>
+                optionsBuilder.UseSqlServer("Server=DESKTOP-6POCO57;Database=PRN221_DB;Uid=sa;password=1234567890", builder =>
                 {
                     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
                 });
