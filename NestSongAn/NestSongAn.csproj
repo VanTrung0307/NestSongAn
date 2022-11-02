@@ -28,10 +28,4 @@
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Admin\Customer\" />
-    <Folder Include="Pages\Admin\Shop\" />
-    <Folder Include="Pages\Admin\Seller\" />
-  </ItemGroup>
-
 </Project>
