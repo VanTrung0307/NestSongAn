@@ -14,6 +14,7 @@ namespace DataAccessObjects.Entity
 
         public int Id { get; set; }
         public DateTime CreateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
         public double TotalAmount { get; set; }
         public double? Discount { get; set; }
         public double? DiscountOrderDetail { get; set; }

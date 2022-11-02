@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -31,23 +29,18 @@ namespace DataAccessObjects.Entity
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-6POCO57;Database=PRN221_DB;Uid=sa;password=1234567890", builder =>
-                {
-                    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-                });
-                base.OnConfiguring(optionsBuilder);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=VANTRUNG;Database=PRN221_DB;Uid=sa;password=1234567890");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Vietnamese_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Account>(entity =>
             {
                 entity.ToTable("Account");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Email).HasMaxLength(100);
 
@@ -68,8 +61,6 @@ namespace DataAccessObjects.Entity
             {
                 entity.ToTable("Customer");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Address).HasMaxLength(250);
 
                 entity.Property(e => e.Email).HasMaxLength(250);
@@ -88,8 +79,6 @@ namespace DataAccessObjects.Entity
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.ApprovePerson)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -97,6 +86,8 @@ namespace DataAccessObjects.Entity
                 entity.Property(e => e.CreateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.DeliveryAddress).HasMaxLength(50);
+
+                entity.Property(e => e.UpdateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
@@ -109,9 +100,7 @@ namespace DataAccessObjects.Entity
             {
                 entity.ToTable("OrderDetail");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
 
@@ -131,8 +120,6 @@ namespace DataAccessObjects.Entity
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.PicUrl).HasColumnName("PicURL");
 
@@ -154,8 +141,6 @@ namespace DataAccessObjects.Entity
             modelBuilder.Entity<Shop>(entity =>
             {
                 entity.ToTable("Shop");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Address).HasMaxLength(50);
 
@@ -189,9 +174,7 @@ namespace DataAccessObjects.Entity
             {
                 entity.ToTable("Stock");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Code)
                     .IsRequired()
@@ -203,9 +186,7 @@ namespace DataAccessObjects.Entity
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.UpdateBy)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.Property(e => e.UpdateBy).HasMaxLength(100);
 
                 entity.Property(e => e.UpdateDate).HasColumnType("datetime");
 

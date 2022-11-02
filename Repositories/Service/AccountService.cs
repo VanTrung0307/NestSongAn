@@ -13,23 +13,23 @@ namespace Repositories.Service
     {
         IEnumerable<Account> GetListAccount();
         Account GetAccountByID(int id);
-        bool CheckAccount(string email, string password);
+        Account CheckAccount(string email, string password);
         void InsertAccount(Account account);
         void DeleteAccount(int accId);
         void UpdateAccount(int accId, Account account);
     }
     public class AccountService : IAccountService
     {
-        public bool CheckAccount(string email, string password)
+        public Account CheckAccount(string email, string password)
         {
             try
             {
-                var check = AccountDAO.Instance.GetAccountByEmail(email);
-                if(check == null || check.Password == password)
+                var accountCheck = AccountDAO.Instance.GetAccountByEmail(email);
+                if(accountCheck == null || accountCheck.Password == password)
                 {
-                    return false;
+                    return null;
                 }
-                return true;
+                return accountCheck;
             }
             catch (Exception e)
             {

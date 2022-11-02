@@ -41,34 +41,78 @@
                         <a asp-area="" asp-page="/Index"><img src="https://cf.shopee.vn/file/1c192eeb28f0bfe861912986619366df_tn" alt="/Index" style="width: 50px; border-radius: 50%" /></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li><a asp-area="" asp-page="/Index" class="active">Home</a></li>
-                            <li><a asp-area="" asp-page="/Admin/Stocks/Index">Stocks</a></li>
-                            <li><a asp-area="" asp-page="/Login/LoginPage">Login</a></li>
-                            <li><a asp-area="" asp-page="/Register/RegisterPage">Register</a></li>
-                            <li><a asp-area="" asp-page="/Index">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
+                        
+                            <ul class="nav">
+                                <li><a asp-area="" asp-page="/Index" class="active">Home</a></li>
+                                <li><a asp-area="" asp-page="/Login/LoginPage">Login</a></li>
+                                <li><a asp-area="" asp-page="/Register/RegisterPage">Register</a></li>
+                                <li><a asp-area="" asp-page="/Login/LoginPage"><i class="fas fa-luggage-cart"></i></a></li>
+                                <li><a asp-area="" asp-page="/Admin/Stocks/Index">Stocks</a></li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                        
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <ul class="nav">
+                                <li><a asp-area="" asp-page="/Admin/Customers/Index">Customer</a></li>
+                                <li><a asp-area="" asp-page="/Admin/Products/Index">Products</a></li>
+                                <li><a asp-area="" asp-page="/Admin/Salers/Index">Salers</a></li>
+                                <li><a asp-area="" asp-page="/Admin/Shops/Index">Shops</a></li>
+                                <li><a asp-area="" asp-page="/Admin/Stocks/Index">Stocks</a></li>
+                                <li><a href="profile.html">Admin <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                                <li>
+                                    <a class="nav-link" style="color: Black" asp-page="/Index" asp-page-handler="Logout">Logout</a>
+                                </li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                        }
+                        @if (User.IsInRole("Saler"))
+                        {
+                            <ul class="nav">
+                                <li><a asp-area="" asp-page="/Admin/Products/Index">Products</a></li>
+                                <li><a asp-area="" asp-page="/Admin/OrderBills/OrderCheckOut">OrderBills</a></li>
+                                <li><a href="profile.html">Saler <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                                <li>
+                                    <a class="nav-link" style="color: Black" asp-page="/Index" asp-page-handler="Logout">Logout</a>
+                                </li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                        }
+                        @if (User.IsInRole("Customer"))
+                        {
+                    <ul class="nav">
+                        <li><a asp-area="" asp-page="/Index" class="active">Home</a></li>
+                        <li><a asp-area="" asp-page="/Admin/Customers/Edit">Customer</a></li>
+                        <li><a asp-area="" asp-page="/"><i class="fas fa-luggage-cart"></i></a></li>
+                        <li><a asp-area="" asp-page="/">OrderHistory</a></li>
+                        <li><a asp-area="" asp-page="/Admin/Customers/Details">@Model.Customer.Name <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li>
+                            <a class="nav-link" asp-page="/Index" asp-page-handler="Logout">Logout</a>
+                        </li>
+                    </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                        }
                         <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+
     
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - NestSongAn - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
