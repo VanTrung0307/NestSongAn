@@ -2,3 +2,70 @@
 @model NestSongAn.Pages.Admin.Shops.EditModel
 @{
 }
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Shop.Code" class="control-label"></label>
+                <input asp-for="Shop.Code" type="text" class="form-control" />
+                <span asp-validation-for="Shop.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.Name" type="text" class="control-label"></label>
+                <input asp-for="Shop.Name" type="text" class="form-control" />
+                <span asp-validation-for="Shop.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Shop.Address" class="control-label"></label>
+                <input asp-for="Shop.Address" type="text" class="form-control">
+                <span asp-validation-for="Shop.Address" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Shop.Active" class="control-label"></label>
+                <select asp-for="Shop.Active" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.Email" class="control-label"></label>
+                <input asp-for="Shop.Email" type="email" class="form-control" />
+                <span asp-validation-for="Shop.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.Phone" class="control-label"></label>
+                <input asp-for="Shop.Phone" type="number" class="form-control" />
+                <span asp-validation-for="Shop.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.CreateDate" class="control-label"></label>
+                <input asp-for="Shop.CreateDate" type="datetime" class="form-control" />
+                <span asp-validation-for="Shop.CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.ReportDate" class="control-label"></label>
+                <input asp-for="Shop.ReportDate" type="datetime" class="form-control" />
+                <span asp-validation-for="Shop.ReportDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.OpenTime" class="control-label"></label>
+                <input asp-for="Shop.OpenTime" type="datetime" class="form-control" />
+                <span asp-validation-for="Shop.OpenTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.CloseTime" class="control-label"></label>
+                <input asp-for="Shop.CloseTime" type="datetime" class="form-control" />
+                <span asp-validation-for="Shop.CloseTime" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-row bd-highlight mb-2">
+                <div class="p-2 bd-highlight">
+                    <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure?')">
+                        Create
+                    </button>
+                </div> |
+                <div class="p-2 bd-highlight">
+                    <a class="btn btn-outline-warning text-warning" asp-page="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
