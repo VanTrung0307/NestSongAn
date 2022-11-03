@@ -60,17 +60,16 @@ namespace BusinessObjects.DAO
 
         public Shop GetShopByCode(string code)
         {
-            Shop shop = null;
             try
             {
                 var context = new PRN221_DBContext();
-                shop = context.Shops.SingleOrDefault(x => x.Code == code);
+                var shop = context.Shops.SingleOrDefault(x => x.Code == code);
+                return shop;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return shop;
         }
 
         public void AddNew(Shop shop)
@@ -80,6 +79,7 @@ namespace BusinessObjects.DAO
                 Shop _shop = GetShopByID(shop.Id);
                 if (_shop == null)
                 {
+                    shop.Active = true;
                     var context = new PRN221_DBContext();
                     context.Shops.Add(shop);
                     context.SaveChanges();
@@ -99,17 +99,9 @@ namespace BusinessObjects.DAO
         {
             try
             {
-                Shop c = GetShopByID(shop.Id);
-                if (c != null)
-                {
-                    var context = new PRN221_DBContext();
-                    context.Entry<Shop>(shop).State = EntityState.Modified;
-                    context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Shop does not exist.");
-                }
+                var context = new PRN221_DBContext();
+                context.Entry<Shop>(shop).State = EntityState.Modified;
+                context.SaveChanges();
             }
             catch (Exception ex)
             {

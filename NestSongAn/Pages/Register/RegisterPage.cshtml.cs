@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repositories.Service;
+using static BusinessObjects.Enum.Enum;
 
 namespace NestSongAn.Pages.Register
 {
@@ -20,22 +21,20 @@ namespace NestSongAn.Pages.Register
         public string Name { get; set; }
         [BindProperty]
         [Required]
-        public string AccountType { get; set; }
+        public string Phone { get; set; }
+        [BindProperty]
+        [Required]
+        public string Email { get; set; }
+        [BindProperty]
+        public Account account { get; set; }
         [BindProperty]
         [Required]
         public string Password { get; set; }
         [BindProperty]
         [Required]
-        [Compare("Password")]
+        //[Compare("Password")]
         public string ConfirmPassword { get; set; }
-        [BindProperty]
-        [Required]
-        public string Phone { get; set; }
-        [BindProperty]
-        [Required]
-        public string Email { get; set; }
-        public Account account { get; set; }
-        public string Role { get; set; }
+        //public string Role { get; set; }
         public RegisterPageModel(IAccountService accountRepository)
         {
             _accountRepository = accountRepository;
@@ -47,18 +46,20 @@ namespace NestSongAn.Pages.Register
 
         public IActionResult OnPost()
         {
-            var checkExist = _accountRepository.CheckAccount(Email, Password);
+
+            var checkExist = _accountRepository.CheckAccount(account.Email, account.Password);
             if (checkExist != null)
             {
                 ViewData["ErrorMessage"] = "The username has existed, Please enter new username";
                 return Page();
             }
-            if (Password != ConfirmPassword)
+            if (account.Password != ConfirmPassword)
             {
                 ViewData["ErrorMessage"] = "The password must match confirm password";
                 return Page();
             }
-              _accountRepository.InsertAccount(account);
+            account.AccountType = (int)AccountTypeEnum.Customer;
+            _accountRepository.InsertAccount(account);
 
             if (account != null)
             {

@@ -49,34 +49,34 @@
             ">
                     <div class="card-body p-5 shadow-5 text-center">
                         <h2 class="fw-bold mb-5">Sign up now</h2>
-                        <form method="post">
+                        <form method="post" asp-page="RegisterPage">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="form-outline mb-4">
-                                <input type="text" id="form3Example3" class="form-control" />
+                                <input asp-for="account.Name" type="text" id="form3Example3" class="form-control" />
                                 <label class="form-label" for="form3Example3">Fullname</label>
                             </div>
-                            <div class="form-outline mb-4">
+                            @*<div class="form-outline mb-4">
                                 <input type="number" value="1" id="form3Example3" class="form-control" readonly />
                                 <label class="form-label" for="form3Example3">AccountType</label>
-                            </div>
+                            </div>*@
                             <div class="form-outline mb-4">
-                                <input type="number" id="form3Example3" class="form-control" />
+                                <input asp-for="account.Phone" type="number" id="form3Example3" class="form-control" />
                                 <label class="form-label" for="form3Example3">Phone</label>
                             </div>
 
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="form3Example3" class="form-control" />
+                                <input asp-for="account.Email" type="email" id="form3Example3" class="form-control" />
                                 <label class="form-label" for="form3Example3">Email address</label>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="form3Example4" class="form-control" />
+                                <input asp-for="account.Password" type="password" id="form3Example4" class="form-control" />
                                 <label class="form-label" for="form3Example4">Password</label>
                             </div>
                             <div class="form-outline mb-4">
-                                <input type="password" id="form3Example4" class="form-control" />
+                                <input asp-for="ConfirmPassword" type="password" id="form3Example4" class="form-control" />
                                 <label class="form-label" for="form3Example4">Confirm Password</label>
                             </div>
 

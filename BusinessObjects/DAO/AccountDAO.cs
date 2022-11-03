@@ -79,8 +79,19 @@ namespace BusinessObjects.DAO
                 Account _acc = GetAccountByID(account.Id);
                 if (_acc == null)
                 {
+                    account.StartDate = DateTime.Now;
                     var context = new PRN221_DBContext();
-                    context.Accounts.Add(_acc);
+                    context.Accounts.Add(account);
+                    context.SaveChanges();
+
+                    var acc = context.Accounts.FirstOrDefault(x => x.Email == account.Email);
+                    Customer newCustomer = new Customer();
+                    newCustomer.AccountId = acc.Id;
+                    newCustomer.Name = acc.Name;
+                    newCustomer.Email = acc.Email;
+                    newCustomer.Phone = acc.Phone;
+                    newCustomer.AccountActive = true;
+                    context.Customers.Add(newCustomer);
                     context.SaveChanges();
                 }
                 else

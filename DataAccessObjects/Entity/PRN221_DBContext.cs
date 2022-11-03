@@ -81,11 +81,11 @@ namespace DataAccessObjects.Entity
 
                 entity.Property(e => e.ApprovePerson)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.CreateTime).HasColumnType("datetime");
 
-                entity.Property(e => e.DeliveryAddress).HasMaxLength(50);
+                entity.Property(e => e.DeliveryAddress).HasMaxLength(255);
 
                 entity.Property(e => e.UpdateTime).HasColumnType("datetime");
 
@@ -129,7 +129,7 @@ namespace DataAccessObjects.Entity
 
                 entity.Property(e => e.ProductName)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(255);
 
                 entity.HasOne(d => d.Stock)
                     .WithMany(p => p.Products)
@@ -142,7 +142,7 @@ namespace DataAccessObjects.Entity
             {
                 entity.ToTable("Shop");
 
-                entity.Property(e => e.Address).HasMaxLength(50);
+                entity.Property(e => e.Address).HasMaxLength(255);
 
                 entity.Property(e => e.CloseTime).HasColumnType("datetime");
 
@@ -153,19 +153,15 @@ namespace DataAccessObjects.Entity
 
                 entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
+                entity.Property(e => e.Email).HasMaxLength(255);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.OpenTime).HasColumnType("datetime");
 
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
+                entity.Property(e => e.Phone).HasMaxLength(255);
 
                 entity.Property(e => e.ReportDate).HasColumnType("datetime");
             });
@@ -184,7 +180,7 @@ namespace DataAccessObjects.Entity
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.UpdateBy).HasMaxLength(100);
 

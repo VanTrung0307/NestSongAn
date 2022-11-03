@@ -86,11 +86,12 @@ namespace Repositories.Service
         {
             try
             {
-                var check = ShopDAO.Instance.GetShopByID(id);
-                if (check == null)
+                var shopResult = ShopDAO.Instance.GetShopByID(id);
+                if (shopResult == null)
                 {
                     throw new Exception("Shop Id not found!!!");
                 }
+                shop.Id = id;
                 ShopDAO.Instance.Update(shop);
             }
             catch (Exception e)

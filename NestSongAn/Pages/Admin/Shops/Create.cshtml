@@ -27,10 +27,10 @@
                 <input asp-for="Shop.Address" type="text" class="form-control">
                 <span asp-validation-for="Shop.Address" class="text-danger"></span>
             </div>
-            <div class="mb-3">
+           @* <div class="mb-3">
                 <label asp-for="Shop.Active" class="control-label"></label>
-                <select asp-for="Shop.Active" class="form-control"></select>
-            </div>
+                <input asp-for="Shop.Active" type="number" class="form-control">
+            </div>*@
             <div class="form-group">
                 <label asp-for="Shop.Email" class="control-label"></label>
                 <input asp-for="Shop.Email" type="email" class="form-control" />
@@ -43,22 +43,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Shop.CreateDate" class="control-label"></label>
-                <input asp-for="Shop.CreateDate" type="datetime" class="form-control" />
+                <input asp-for="Shop.CreateDate" class="form-control" />
                 <span asp-validation-for="Shop.CreateDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Shop.ReportDate" class="control-label"></label>
-                <input asp-for="Shop.ReportDate" type="datetime" class="form-control" />
+                <input asp-for="Shop.ReportDate" class="form-control" />
                 <span asp-validation-for="Shop.ReportDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Shop.OpenTime" class="control-label"></label>
-                <input asp-for="Shop.OpenTime" type="datetime" class="form-control" />
+                <input asp-for="Shop.OpenTime" class="form-control" />
                 <span asp-validation-for="Shop.OpenTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Shop.CloseTime" class="control-label"></label>
-                <input asp-for="Shop.CloseTime" type="datetime" class="form-control" />
+                <input asp-for="Shop.CloseTime" class="form-control" />
                 <span asp-validation-for="Shop.CloseTime" class="text-danger"></span>
             </div>
             <div class="d-flex flex-row bd-highlight mb-2">
