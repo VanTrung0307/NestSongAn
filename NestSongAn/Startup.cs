@@ -1,4 +1,5 @@
 using DataAccessObjects.Entity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,11 +29,19 @@ namespace NestSongAn
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<IShopService, ShopService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddDbContext<PRN221_DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/Login/LoginPage";
+                options.AccessDeniedPath = "";
+            });
+            services.AddSession();
 
         }
 
@@ -49,7 +58,7 @@ namespace NestSongAn
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

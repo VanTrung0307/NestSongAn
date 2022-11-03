@@ -2,3 +2,52 @@
 @model NestSongAn.Pages.Admin.Salers.EditModel
 @{
 }
+<div class="card mb-4" style="margin-top: 100px">
+    <h5 class="card-header">Create Stock</h5>
+    <div class="demo-inline-spacing">
+        <button type="submit" class="btn rounded-pill btn-primary">
+            &nbsp; Save
+        </button>
+        <button type="button" class="btn rounded-pill btn-secondary">
+            &nbsp; Cancel
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label asp-for="Saler.Name" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Saler.Name" class="form-control" type="text" id="html5-email-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Saler.AccountType" for="html5-number-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Saler.AccountType" class="form-control" type="number" id="html5-number-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Saler.StartDate" for="html5-date-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Saler.StartDate" class="form-control" type="date" id="html5-date-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Saler.Password" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Saler.Password" class="form-control" type="text" id="html5-email-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Saler.Phone" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Saler.Phone" class="form-control" type="number" id="html5-email-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Saler.Email" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Saler.Email" class="form-control" type="email" id="html5-email-input" />
+            </div>
+        </div>
+    </div>
+</div>

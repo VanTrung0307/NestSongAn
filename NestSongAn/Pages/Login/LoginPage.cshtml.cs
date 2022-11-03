@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repositories.Service;
@@ -27,6 +28,7 @@ namespace NestSongAn.Pages.Login
         [BindProperty]
         [Required]
         public string Email { get; set; }
+        public string Role { get; set; }
         public void OnGet()
         {
         }
@@ -38,30 +40,34 @@ namespace NestSongAn.Pages.Login
                 var account = _accountRepository.CheckAccount(Email, Password);
                 if (account == null)
                 {
-                    //throw error
+                    throw new Exception("Account does not exist");
                 }
 
                 switch (account.AccountType)
                 {
                     case (int)AccountTypeEnum.Customer:
-                        claims.Add(new Claim(ClaimTypes.Role, "Customer"));
+                        Role = "Customers";
+                        HttpContext.Session.SetString("Role", Role);
                         break;
                     case (int)AccountTypeEnum.Admin:
-                        claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                        Role = "Admin";
+                        HttpContext.Session.SetString("Role", Role);
+
                         break;
                     case (int)AccountTypeEnum.Saller:
-                        claims.Add(new Claim(ClaimTypes.Role, "Saler"));
+                        Role = "Saler";
+                        HttpContext.Session.SetString("Role", Role);
                         break;
                 }
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);
-                //return page nào tự set 
-                return null;
+                return Redirect("/Index");
+                //return null;
             }
             TempData["Error"] = "Invalid input";
-            //login fail -> return page nào
-            return null;
+            return Redirect("/Login/LoginPage");
+            //return null;
         }
     }
 }

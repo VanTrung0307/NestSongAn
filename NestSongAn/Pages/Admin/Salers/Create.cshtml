@@ -2,3 +2,56 @@
 @model NestSongAn.Pages.Admin.Salers.CreateModel
 @{
 }
+<div class="text-center">
+    <p class="h3 p-3">Create new Saler</p>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Saler.Name" class="control-label"></label>
+                <input asp-for="Saler.Name" class="form-control" />
+                <span asp-validation-for="Saler.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saler.AccountType" class="control-label"></label>
+                <input asp-for="Saler.AccountType" class="form-control" />
+                <span asp-validation-for="Saler.AccountType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Saler.StartDate" class="control-label"></label>
+                <input asp-for="Saler.StartDate" class="form-control">
+                <span asp-validation-for="Saler.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saler.Password" class="control-label"></label>
+                <input asp-for="Saler.Password" class="form-control" />
+                <span asp-validation-for="Saler.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saler.Phone" class="control-label"></label>
+                <input asp-for="Saler.Phone" class="form-control" />
+                <span asp-validation-for="Saler.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saler.Email" class="control-label"></label>
+                <input asp-for="Saler.Email" class="form-control" />
+                <span asp-validation-for="Saler.Email" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-row bd-highlight mb-2">
+                <div class="p-2 bd-highlight">
+                    <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure?')">
+                        Create
+                    </button>
+                </div> |
+                <div class="p-2 bd-highlight">
+                    <a class="btn btn-outline-warning text-warning" asp-page="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

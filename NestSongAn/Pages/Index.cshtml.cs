@@ -1,4 +1,5 @@
 ﻿using DataAccessObjects.Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -14,7 +15,7 @@ namespace NestSongAn.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IProductService _productService;
-
+        
         public IndexModel(ILogger<IndexModel> logger, IProductService productService)
         {
             _productService = productService;
@@ -23,8 +24,15 @@ namespace NestSongAn.Pages
         public IEnumerable<Product> Products { get; set; }
         public IActionResult OnGet()
         {
+            
+            
             Products = _productService.GetProductList();
             return Page();
+        }
+        public IActionResult OnGetLogout()
+        {
+            HttpContext.Session.Remove("Role");
+            return RedirectToPage("/Login/LoginPage");
         }
     }
 }

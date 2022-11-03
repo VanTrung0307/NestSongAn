@@ -60,17 +60,16 @@ namespace BusinessObjects.DAO
 
         public Stock GetStockByCode(string code)
         {
-            Stock stock = null;
             try
             {
                 var context = new PRN221_DBContext();
-                stock = context.Stocks.FirstOrDefault(x => x.Code == code);
+                var stock = context.Stocks.FirstOrDefault(x => x.Code == code);
+                return stock;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return stock;
         }
 
         public void AddNew(Stock stock)

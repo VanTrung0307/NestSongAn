@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -41,19 +42,22 @@
                         <a asp-area="" asp-page="/Index"><img src="https://cf.shopee.vn/file/1c192eeb28f0bfe861912986619366df_tn" alt="/Index" style="width: 50px; border-radius: 50%" /></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
-                        
+                        @if (Context.Session.GetString("Role") == null)
+                        {
                             <ul class="nav">
                                 <li><a asp-area="" asp-page="/Index" class="active">Home</a></li>
                                 <li><a asp-area="" asp-page="/Login/LoginPage">Login</a></li>
                                 <li><a asp-area="" asp-page="/Register/RegisterPage">Register</a></li>
                                 <li><a asp-area="" asp-page="/Login/LoginPage"><i class="fas fa-luggage-cart"></i></a></li>
-                                <li><a asp-area="" asp-page="/Admin/Stocks/Index">Stocks</a></li>
+                                
                             </ul>
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
-                        
-                        @if (User.IsInRole("Admin"))
+                            }
+
+
+                        @if (Context.Session.GetString("Role") == "Admin")
                         {
                             <ul class="nav">
                                 <li><a asp-area="" asp-page="/Admin/Customers/Index">Customer</a></li>
@@ -70,12 +74,12 @@
                                 <span>Menu</span>
                             </a>
                         }
-                        @if (User.IsInRole("Saler"))
+                        @if (Context.Session.GetString("Role") == "Saler")
                         {
                             <ul class="nav">
                                 <li><a asp-area="" asp-page="/Admin/Products/Index">Products</a></li>
                                 <li><a asp-area="" asp-page="/Admin/OrderBills/OrderCheckOut">OrderBills</a></li>
-                                <li><a href="profile.html">Saler <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                                <li><a asp-area="" asp-page="/Admin/Salers/Details">Saler </a></li>
                                 <li>
                                     <a class="nav-link" style="color: Black" asp-page="/Index" asp-page-handler="Logout">Logout</a>
                                 </li>
@@ -84,18 +88,18 @@
                                 <span>Menu</span>
                             </a>
                         }
-                        @if (User.IsInRole("Customer"))
+                        @if (Context.Session.GetString("Role") == "Customers")
                         {
-                    <ul class="nav">
-                        <li><a asp-area="" asp-page="/Index" class="active">Home</a></li>
-                        <li><a asp-area="" asp-page="/Admin/Customers/Edit">Customer</a></li>
-                        <li><a asp-area="" asp-page="/"><i class="fas fa-luggage-cart"></i></a></li>
-                        <li><a asp-area="" asp-page="/">OrderHistory</a></li>
-                        <li><a asp-area="" asp-page="/Admin/Customers/Details">@Model.Customer.Name <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                        <li>
-                            <a class="nav-link" asp-page="/Index" asp-page-handler="Logout">Logout</a>
-                        </li>
-                    </ul>
+                            <ul class="nav">
+                                <li><a asp-area="" asp-page="/Index" class="active">Home</a></li>
+                                <li><a asp-area="" asp-page="/Admin/Customers/Edit">Customer</a></li>
+                                <li><a asp-area="" asp-page="/ShoppingCart/Cart"><i class="fas fa-luggage-cart"></i></a></li>
+                                <li><a asp-area="" asp-page="/OrderBills/OrderCheckOut">OrderHistory</a></li>
+                                <li><a asp-area="" asp-page="/Admin/Customers/Details">Customer </a></li>
+                                <li>
+                                    <a class="nav-link" asp-page="/Index" asp-page-handler="Logout">Logout</a>
+                                </li>
+                            </ul>
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
@@ -107,7 +111,7 @@
         </div>
     </header>
 
-    
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

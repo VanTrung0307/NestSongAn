@@ -11,8 +11,8 @@ using Repositories.Service;
 
 namespace NestSongAn.Pages.Stocks
 {
-    /*[Authorize(Roles = "Admin")]*/
-    
+   /* [Authorize(Roles = "Admin")]*/
+
     public class CreateModel : PageModel
     {
         private readonly IStockService _stockRepository;
@@ -22,6 +22,7 @@ namespace NestSongAn.Pages.Stocks
             _stockRepository = stockRepo;
             _shopRepository = shopRepo;
         }
+        [BindProperty]
         public Stock Stocks { get; set; }
         public IActionResult OnGet()
         {

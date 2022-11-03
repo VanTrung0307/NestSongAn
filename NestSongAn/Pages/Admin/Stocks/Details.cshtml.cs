@@ -21,6 +21,7 @@ namespace NestSongAn.Pages.Stocks
             _stockRepository = stockRepo;
             _shopRepository = shopRepo;
         }
+        [BindProperty]
         public Stock Stocks { get; set; }
         public IActionResult OnGet(int Id)
         {

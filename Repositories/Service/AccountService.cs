@@ -25,7 +25,7 @@ namespace Repositories.Service
             try
             {
                 var accountCheck = AccountDAO.Instance.GetAccountByEmail(email);
-                if(accountCheck == null || accountCheck.Password == password)
+                if(accountCheck == null || accountCheck.Password != password)
                 {
                     return null;
                 }

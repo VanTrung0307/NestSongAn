@@ -2,3 +2,52 @@
 @model NestSongAn.Pages.Admin.Products.EditModel
 @{
 }
+<div class="card mb-4" style="margin-top: 100px">
+    <h5 class="card-header">Create Stock</h5>
+    <div class="demo-inline-spacing">
+        <button type="submit" class="btn rounded-pill btn-primary">
+            &nbsp; Save
+        </button>
+        <button type="button" class="btn rounded-pill btn-secondary">
+            &nbsp; Cancel
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label asp-for="Product.ProductCode" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Product.ProductCode" class="form-control" type="text" id="html5-email-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Product.ProductName" for="html5-number-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Product.ProductName" class="form-control" type="number" id="html5-number-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Product.Price" for="html5-date-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Product.Price" class="form-control" type="date" id="html5-date-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Product.PicUrl" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Product.PicUrl" class="form-control" type="text" id="html5-email-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Product.StockId" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Product.StockId" class="form-control" type="number" id="html5-email-input" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Product.QuantityInStock" for="html5-email-input" class="col-md-2 col-form-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Product.QuantityInStock" class="form-control" type="email" id="html5-email-input" />
+            </div>
+        </div>
+    </div>
+</div>

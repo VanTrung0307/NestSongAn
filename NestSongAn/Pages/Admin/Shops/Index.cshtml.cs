@@ -11,7 +11,7 @@ using Repositories.Service;
 
 namespace NestSongAn.Pages.Admin.Shops
 {
-    [Authorize(Roles = "Admin")]
+    /*[Authorize(Roles = "Admin")]*/
     public class IndexModel : PageModel
     {
         private readonly IShopService _shopRepository;
@@ -19,11 +19,17 @@ namespace NestSongAn.Pages.Admin.Shops
         {
             _shopRepository = shopRepo;
         }
+        [BindProperty]
         public IEnumerable<Shop> Shop { get; set; }
         public IActionResult OnGet()
         {
             Shop = _shopRepository.GetShopList();
             return Page();
+        }
+        public IActionResult OnGetLogout()
+        {
+            HttpContext.Session.Remove("Role");
+            return RedirectToPage("/Login/LoginPage");
         }
     }
 }

@@ -11,7 +11,7 @@ using Repositories.Service;
 
 namespace NestSongAn.Pages.Admin.Shops
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly IShopService _shopRepository;
@@ -19,6 +19,7 @@ namespace NestSongAn.Pages.Admin.Shops
         {
             _shopRepository = shopRepo;
         }
+        [BindProperty]
         public Shop Shop { get; set; }
         public IActionResult OnGet(int Id)
         {

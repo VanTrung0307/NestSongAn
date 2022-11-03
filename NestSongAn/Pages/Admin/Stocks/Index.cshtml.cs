@@ -11,7 +11,7 @@ using Repositories.Service;
 
 namespace NestSongAn.Pages.Stocks
 {
-    
+   /* [Authorize(Roles = "Admin")]*/
     public class IndexModel : PageModel
     {
 
@@ -22,12 +22,18 @@ namespace NestSongAn.Pages.Stocks
             _stockRepository = stockRepo;
             _shopRepository = shopRepo;
         }
+        [BindProperty]
         public IEnumerable<Stock> Stocks { get; set; }
         public IActionResult OnGet()
         {
             ViewData["Shop"] = new SelectList(_shopRepository.GetShopList(), "Id", "Name");
             Stocks = _stockRepository.GetStocks();
             return Page();
+        }
+        public IActionResult OnGetLogout()
+        {
+            HttpContext.Session.Remove("Role");
+            return RedirectToPage("/Login/LoginPage");
         }
     }
 }
