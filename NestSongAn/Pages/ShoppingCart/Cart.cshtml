@@ -2,3 +2,65 @@
 @model NestSongAn.Pages.ShoppingCart.CartModel
 @{
 }
+<link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
+<link href="~/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/css/style.css" rel="stylesheet" />
+<link href="~/css/responsive.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="~/css/style2.css">
+<table border="1" class="table table-hover">
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Avatar</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+        <th>Delete</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model.cartCus)
+    {
+        Model.Total += item.Product.Price * item.Quantity;
+<tr>
+    <td>@item.Product.ProductCode</td>
+    <td>@item.Product.ProductName</td>
+    <td><img src="@item.Product.PicUrl" width="120" height="100" /></td>
+    <td>@item.Product.Price</td>
+    <td>@item.Quantity</td>
+    <td>@(item.Product.Price * item.Quantity)</td>
+    <td>
+        <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Product.Id">X</a>
+    </td>
+    <td>
+        <a class="btn btn-outline-secondary" asp-page="cart" asp-page-handler="increase" asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-plus"></i></a>
+        <a class="btn btn-outline-secondary" asp-page="cart" asp-page-handler="decrease" asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-minus"></i></a>
+    </td>
+</tr>}
+    <tr>
+        <td colspan="5" align="center">
+            Total
+        </td>
+        <td>
+            @Model.Total
+        </td>
+    </tr>
+</table>
+
+<form method="post">
+    <div class="input-group-append">
+        <label asp-for="@Model.Customer.Address"></label>
+        <input asp-for="@Model.Customer.Address" class="form-control" style="width: 300px; margin-left: 10px; margin-right: 100px" name="SubShippingAddr" required />
+        <span asp-validation-for="@Model.Customer.Address" class="text-danger"></span>
+        @if (Model.cartCus == null)
+        {
+<input type="text" name="SubTotal" value="@Model.Total" hidden />
+                <button class="btn btn-primary" asp-for="@Model.Total" type="submit" style="margin-left: 1230px" disabled>Checkout</button> }
+                            else
+                            {
+                <input type="text" name="SubTotal" value="@Model.Total" hidden />
+                                <button class="btn btn-primary" asp-for="@Model.Total" type="submit" style="margin-left: 1230px">Checkout</button>}
+
+    </div>
+</form>
+<a asp-page="index" class="btn btn-primary" style="padding: 10px; text-align:center;">Continue shopping</a>
