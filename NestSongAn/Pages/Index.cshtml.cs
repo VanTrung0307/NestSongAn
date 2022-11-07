@@ -36,6 +36,5 @@ namespace NestSongAn.Pages
             HttpContext.Session.SetString("Role", Role);
             return RedirectToPage("/Login/LoginPage");
         }
-        // logout
     }
 }
