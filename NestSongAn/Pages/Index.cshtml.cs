@@ -32,8 +32,7 @@ namespace NestSongAn.Pages
         }
         public IActionResult OnGetLogout()
         {
-            Role = "Customers";
-            HttpContext.Session.SetString("Role", Role);
+            HttpContext.Session.Remove("Role");
             return RedirectToPage("/Login/LoginPage");
         }
     }
