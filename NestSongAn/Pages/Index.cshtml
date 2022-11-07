@@ -1,4 +1,5 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -40,18 +41,31 @@
                 <h4><em>Shopping</em> Right Now</h4>
             </div>
             <div class="row">
-                @foreach (var item in Model.Products) {
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="@item.PicUrl" alt="">
-                        <h4>@item.ProductName<br><button><i class="fa-solid fa-cart-plus"></i></button></h4>
-                        <ul>
-                            <li><i class="fa-solid fa-money-bill"></i>@item.Price</li>
-                            <li><i class="fa-solid fa-kaaba"></i>@item.QuantityInStock</li>
-                        </ul>
+                @foreach (var item in Model.Products)
+                {
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="item">
+                            <img src="@item.PicUrl" alt="">
+                            <h4>
+                                @item.ProductName<br>
+                                @if (@Model.Role == "Customer")
+                                {
+
+
+                                    <button asp-page="/ShoppingCart/Cart" asp-route-id="@item.Id"><i class="fa-solid fa-cart-plus"></i></button>
+                                }
+                                else
+                                {
+                                    <button asp-page="/Login/LoginPage"><i class="fa-solid fa-cart-plus"></i></button>
+                                }
+                            </h4>
+                            <ul>
+                                <li><i class="fa-solid fa-money-bill"></i>@item.Price</li>
+                                <li><i class="fa-solid fa-kaaba"></i>@item.QuantityInStock</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                }   
+                }
             </div>
         </div>
     </div>

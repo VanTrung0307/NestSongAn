@@ -34,6 +34,7 @@ namespace NestSongAn
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<IShopService, ShopService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IOrderRepository, OderRepository>();
             services.AddDbContext<PRN221_DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>

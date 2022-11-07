@@ -21,6 +21,7 @@ namespace NestSongAn.Pages
             _productService = productService;
             _logger = logger;
         }
+        public string Role { get; set; }
         public IEnumerable<Product> Products { get; set; }
         public IActionResult OnGet()
         {
@@ -31,7 +32,8 @@ namespace NestSongAn.Pages
         }
         public IActionResult OnGetLogout()
         {
-            HttpContext.Session.Remove("Role");
+            Role = "Customers";
+            HttpContext.Session.SetString("Role", Role);
             return RedirectToPage("/Login/LoginPage");
         }
         // logout
